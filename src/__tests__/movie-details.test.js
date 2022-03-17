@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import MovieDetails from "../components/movie-details";
 
 const selectedMovie = {
@@ -24,6 +24,31 @@ describe("Movie Detail Components", () => {
     const { getByTestId } = render(<MovieDetails movie={selectedMovie} />);
     expect(getByTestId("no-ratings").innerHTML).toBe(
       `(${selectedMovie.no_of_ratings})`
+    );
+  });
+  test("mouseover should highlight star", () => {
+    const { container } = render(<MovieDetails movie={selectedMovie} />);
+    const stars = container.querySelectorAll(".rate-container svg");
+    stars.forEach((star, index) => {
+      fireEvent.mouseOver(star);
+      const highlighted_star = container.querySelectorAll(".purple");
+      expect(highlighted_star.length).toBe(index + 1);
+    });
+  });
+  test("mouseleave should highlight star", () => {
+    const { container } = render(<MovieDetails movie={selectedMovie} />);
+    const stars = container.querySelectorAll(".rate-container svg");
+    stars.forEach((star) => {
+      fireEvent.mouseOver(star);
+      fireEvent.mouseOut(star);
+      const highlighted_star = container.querySelectorAll(".purple");
+      expect(highlighted_star.length).toBe(0);
+    });
+  });
+  test("should make api call after star clicking", () => {
+    const loadMovie = jest.fn();
+    const { container } = render(
+      <MovieDetails movie={selectedMovie} updateMovie={loadMovie} />
     );
   });
 });

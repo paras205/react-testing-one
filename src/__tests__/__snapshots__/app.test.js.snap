@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`App Component Should match a snapshop 1`] = `
+<div>
+  <h1>
+    Loading...
+  </h1>
+</div>
+`;
+
 exports[`Movie Detail Components Should match a snapshop 1`] = `
 <div>
   <div>

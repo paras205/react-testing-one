@@ -40,7 +40,7 @@ function MovieForm(props) {
             onChange={(evt) => setTitle(evt.target.value)}
           />
           <br />
-          <label htmlFor="description">Descriptiom</label>
+          <label htmlFor="description">Description</label>
           <br />
           <textarea
             id="description"

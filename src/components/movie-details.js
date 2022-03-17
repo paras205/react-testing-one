@@ -41,8 +41,8 @@ function MovieDetails(props) {
     <React.Fragment>
       {mov ? (
         <div>
-          <h1>{mov.title}</h1>
-          <p>{mov.description}</p>
+          <h1 data-testid="heading">{mov.title}</h1>
+          <p data-testid="description">{mov.description}</p>
           <FontAwesomeIcon
             icon={faStar}
             className={mov.avg_rating > 0 ? "orange" : ""}
